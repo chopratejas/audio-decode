@@ -1,0 +1,29 @@
+[package]
+name = "audiodecode-rust"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "audiodecode_rust"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.22", features = ["extension-module"] }
+numpy = "0.22"
+symphonia = { version = "0.5", features = [
+    "mp3",
+    "aac",
+    "flac",
+    "ogg",
+    "opt-simd-avx",  # x86_64 SIMD
+    "opt-simd-neon"  # ARM SIMD (M1/M2)
+] }
+rubato = "0.15"  # High-quality resampling
+rayon = "1.10"   # Parallel processing
+thiserror = "2.0"  # Better error handling
+
+[profile.release]
+opt-level = 3
+lto = "fat"          # Link-time optimization
+codegen-units = 1    # Better optimization
+strip = true         # Smaller binaries
