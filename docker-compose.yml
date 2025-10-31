@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  audiodecode-linux:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    image: audiodecode:linux-test
+    container_name: audiodecode-linux
+    volumes:
+      - .:/app
+      - ./fixtures:/app/fixtures
+    working_dir: /app
+    command: /bin/bash
+    stdin_open: true
+    tty: true
