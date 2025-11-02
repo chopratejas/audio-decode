@@ -1,0 +1,112 @@
+{
+  "results": [
+    {
+      "implementation": "openai-whisper",
+      "model_size": "tiny",
+      "audio_file": "benchmarks/test_audio/test_10s.wav",
+      "audio_duration": 10.0,
+      "load_time": 3.2565057500000876,
+      "inference_time": 1.1324506250002742,
+      "total_time": 4.388956375000362,
+      "rtf": 2.278445977945993,
+      "memory_delta_mb": 345.421875,
+      "transcription_preview": ""
+    },
+    {
+      "implementation": "faster-whisper-librosa",
+      "model_size": "tiny",
+      "audio_file": "benchmarks/test_audio/test_10s.wav",
+      "audio_duration": 10.0,
+      "load_time": 0.6439490419998037,
+      "inference_time": 0.2474317080000219,
+      "total_time": 0.8913807499998256,
+      "rtf": 11.218550546443769,
+      "memory_delta_mb": 99.671875,
+      "transcription_preview": ""
+    },
+    {
+      "implementation": "audiodecode-faster-whisper",
+      "model_size": "tiny",
+      "audio_file": "benchmarks/test_audio/test_10s.wav",
+      "audio_duration": 10.0,
+      "load_time": 0.19965612499981944,
+      "inference_time": 0.1410025840000344,
+      "total_time": 0.34065870899985384,
+      "rtf": 29.35489314029042,
+      "memory_delta_mb": 18.609375,
+      "transcription_preview": ""
+    },
+    {
+      "implementation": "openai-whisper",
+      "model_size": "tiny",
+      "audio_file": "benchmarks/test_audio/test_30s.wav",
+      "audio_duration": 30.0,
+      "load_time": 0.3304579159998866,
+      "inference_time": 0.1770051670000612,
+      "total_time": 0.5074630829999478,
+      "rtf": 59.11760087581206,
+      "memory_delta_mb": 30.640625,
+      "transcription_preview": ""
+    },
+    {
+      "implementation": "faster-whisper-librosa",
+      "model_size": "tiny",
+      "audio_file": "benchmarks/test_audio/test_30s.wav",
+      "audio_duration": 30.0,
+      "load_time": 0.2054942499999015,
+      "inference_time": 0.24503204199982065,
+      "total_time": 0.45052629199972216,
+      "rtf": 66.588788562907,
+      "memory_delta_mb": 41.640625,
+      "transcription_preview": ""
+    },
+    {
+      "implementation": "audiodecode-faster-whisper",
+      "model_size": "tiny",
+      "audio_file": "benchmarks/test_audio/test_30s.wav",
+      "audio_duration": 30.0,
+      "load_time": 0.21157679199995982,
+      "inference_time": 0.16893124999978681,
+      "total_time": 0.38050804199974664,
+      "rtf": 78.84196045459659,
+      "memory_delta_mb": 3.96875,
+      "transcription_preview": ""
+    },
+    {
+      "implementation": "openai-whisper",
+      "model_size": "tiny",
+      "audio_file": "benchmarks/test_audio/test_60s.wav",
+      "audio_duration": 60.0,
+      "load_time": 0.2850012499998229,
+      "inference_time": 0.2408194170002389,
+      "total_time": 0.5258206670000618,
+      "rtf": 114.10734451027758,
+      "memory_delta_mb": 22.109375,
+      "transcription_preview": ""
+    },
+    {
+      "implementation": "faster-whisper-librosa",
+      "model_size": "tiny",
+      "audio_file": "benchmarks/test_audio/test_60s.wav",
+      "audio_duration": 60.0,
+      "load_time": 0.2702883329998258,
+      "inference_time": 1.8084612920001746,
+      "total_time": 2.0787496250000004,
+      "rtf": 28.863504906224573,
+      "memory_delta_mb": 98.953125,
+      "transcription_preview": ""
+    },
+    {
+      "implementation": "audiodecode-faster-whisper",
+      "model_size": "tiny",
+      "audio_file": "benchmarks/test_audio/test_60s.wav",
+      "audio_duration": 60.0,
+      "load_time": 0.20741020800005572,
+      "inference_time": 0.23662583399982395,
+      "total_time": 0.44403604199987967,
+      "rtf": 135.12416633966902,
+      "memory_delta_mb": 7.578125,
+      "transcription_preview": ""
+    }
+  ]
+}

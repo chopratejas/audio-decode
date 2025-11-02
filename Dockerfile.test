@@ -19,6 +19,15 @@ COPY . .
 # Install Python dependencies
 RUN pip install --no-cache-dir -e ".[dev]"
 
+# Install faster-whisper for speech-to-text testing
+RUN pip install --no-cache-dir faster-whisper
+
+# Install UX and benchmarking dependencies
+RUN pip install --no-cache-dir tqdm typer rich jiwer
+
+# Install YouTube and comparison tools
+RUN pip install --no-cache-dir yt-dlp openai-whisper librosa
+
 # Install additional tools for profiling
 RUN pip install --no-cache-dir py-spy
 

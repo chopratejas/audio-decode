@@ -1,0 +1,43 @@
+{
+  "results": [
+    {
+      "implementation": "openai-whisper",
+      "audio_load_time": 0.0,
+      "model_load_time": 3.1704856690000156,
+      "inference_time": 30.483669179999993,
+      "total_time": 33.65415484900001,
+      "audio_duration": 398.34,
+      "rtf": 11.836280001303797,
+      "memory_delta_mb": 289.08203125,
+      "num_words": 885,
+      "num_segments": 75,
+      "transcription_preview": "Hi everyone, my name is Tajus Chopra and I am an engineer at Netflix. It is an honor to be presenting at TEDx Woodside this year. The theme for this year's TEDx Conference is rebirth. We are in the midst of a pandemic and it is a moment to reflect on our choices and their impact on the environment. We see the growth of blockchain based applications and web 3.2 today and there are concerns about its impact on our environment. As an engineer, I took an opportunity to review the environmental impac"
+    },
+    {
+      "implementation": "faster-whisper+librosa",
+      "audio_load_time": 7.394813462000002,
+      "model_load_time": 3.0598742509999965,
+      "inference_time": 7.0746811699999625,
+      "total_time": 17.52936888299996,
+      "audio_duration": 405.3043125,
+      "rtf": 23.121443516033565,
+      "memory_delta_mb": 368.5078125,
+      "num_words": 884,
+      "num_segments": 65,
+      "transcription_preview": "Hi everyone, my name is Stages Chopra and I am an engineer at Netflix.  It is an honor to be presenting at TEDx Woodside this year.  The theme for this year's TEDx Conference is Rebirth.  We are in the midst of a pandemic and it is a moment to reflect on our choices and  their impact on the environment.  We see the growth of blockchain based applications and web 3.2 today and there are concerns  about its impact on our environment.  As an engineer, I took an opportunity to review the environment"
+    },
+    {
+      "implementation": "audiodecode+faster-whisper",
+      "audio_load_time": 0.5079243339999948,
+      "model_load_time": 0.3113319169999613,
+      "inference_time": 8.384154129000024,
+      "total_time": 9.20341037999998,
+      "audio_duration": 405.3043125,
+      "rtf": 44.038491794386424,
+      "memory_delta_mb": 185.10546875,
+      "num_words": 872,
+      "num_segments": 44,
+      "transcription_preview": "Hi, everyone. My name is Stages Chopra and I am an engineer at Netflix. It is an honor to be presenting at TEDx Woodside this year. The theme for this year's TEDx Conference is rebirth. We are in the midst of a pandemic and it is a moment to reflect on our choices and their impact on the environment. We see the growth of blockchain based applications and web 3.0 today and there are concerns about its impact on our environment. As an engineer, I took an opportunity to review the environmental imp"
+    }
+  ]
+}
