@@ -2,11 +2,15 @@
 Pytest configuration and shared fixtures.
 """
 
+import os
 import shutil
 from pathlib import Path
 
 import numpy as np
 import pytest
+
+# Disable batched inference for all tests (mocking doesn't work well with BatchedInferencePipeline)
+os.environ["AUDIODECODE_DISABLE_BATCHED"] = "1"
 
 
 @pytest.fixture(scope="session")

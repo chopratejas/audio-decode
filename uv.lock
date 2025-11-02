@@ -7,8 +7,22 @@ resolution-markers = [
 ]
 
 [[package]]
+name = "anyio"
+version = "4.11.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "idna" },
+    { name = "sniffio" },
+    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/19118443977/anyio-4.11.0.tar.gz", hash = "sha256:82a8d0b81e318cc5ce71a5f1f8b5c4e63619620b63141ef8c995fa0db95a57c4", size = 219094 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19118443976/anyio-4.11.0-py3-none-any.whl", hash = "sha256:0287e96f4d26d4149305414d4e3bc32f0dcd0862365a4bddea19d7a1ec38c4fc", size = 109097 },
+]
+
+[[package]]
 name = "audiodecode"
-version = "0.1.0"
+version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "av" },
@@ -17,6 +31,15 @@ dependencies = [
 ]
 
 [package.optional-dependencies]
+benchmarks = [
+    { name = "jiwer" },
+    { name = "matplotlib" },
+    { name = "pandas" },
+]
+cli = [
+    { name = "rich" },
+    { name = "typer" },
+]
 dev = [
     { name = "black" },
     { name = "isort" },
@@ -34,6 +57,10 @@ dev = [
     { name = "pytest-xdist" },
     { name = "ruff" },
 ]
+inference = [
+    { name = "faster-whisper" },
+    { name = "tqdm" },
+]
 jax = [
     { name = "jax" },
     { name = "jaxlib" },
@@ -46,14 +73,18 @@ torch = [
 requires-dist = [
     { name = "av", specifier = ">=12.0.0" },
     { name = "black", marker = "extra == 'dev'", specifier = ">=23.12.0" },
+    { name = "faster-whisper", marker = "extra == 'inference'", specifier = ">=1.0.0" },
     { name = "isort", marker = "extra == 'dev'", specifier = ">=5.13.0" },
     { name = "jax", marker = "extra == 'jax'", specifier = ">=0.4.20" },
     { name = "jaxlib", marker = "extra == 'jax'", specifier = ">=0.4.20" },
+    { name = "jiwer", marker = "extra == 'benchmarks'", specifier = ">=3.0.0" },
     { name = "librosa", marker = "extra == 'dev'", specifier = ">=0.10.1" },
+    { name = "matplotlib", marker = "extra == 'benchmarks'", specifier = ">=3.8.0" },
     { name = "matplotlib", marker = "extra == 'dev'", specifier = ">=3.8.0" },
     { name = "memory-profiler", marker = "extra == 'dev'", specifier = ">=0.61.0" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.7.0" },
     { name = "numpy", specifier = ">=1.26.0" },
+    { name = "pandas", marker = "extra == 'benchmarks'", specifier = ">=2.1.0" },
     { name = "pandas", marker = "extra == 'dev'", specifier = ">=2.1.0" },
     { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=3.6.0" },
     { name = "psutil", marker = "extra == 'dev'", specifier = ">=5.9.0" },
@@ -62,9 +93,12 @@ requires-dist = [
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.1.0" },
     { name = "pytest-timeout", marker = "extra == 'dev'", specifier = ">=2.2.0" },
     { name = "pytest-xdist", marker = "extra == 'dev'", specifier = ">=3.5.0" },
+    { name = "rich", marker = "extra == 'cli'", specifier = ">=13.7.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
     { name = "soundfile", specifier = ">=0.12.0" },
     { name = "torch", marker = "extra == 'torch'", specifier = ">=2.1.0" },
+    { name = "tqdm", marker = "extra == 'inference'", specifier = ">=4.66.0" },
+    { name = "typer", marker = "extra == 'cli'", specifier = ">=0.12.0" },
 ]
 
 [[package]]
@@ -398,6 +432,18 @@ wheels = [
 ]
 
 [[package]]
+name = "coloredlogs"
+version = "15.0.1"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "humanfriendly" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/928813172/coloredlogs-15.0.1.tar.gz", hash = "sha256:7c991aa71a4577af2f82600d8f8f3a89f936baeaf9b50a9c197da014e5bf16b0", size = 278520 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/928813171/coloredlogs-15.0.1-py2.py3-none-any.whl", hash = "sha256:612ee75c546f53e92e70049c9dbfcc18c935a2b9a53b66085ce9ef6a6e5c0934", size = 46018 },
+]
+
+[[package]]
 name = "contourpy"
 version = "1.3.3"
 source = { registry = "https://pypi.netflix.net/simple" }
@@ -572,6 +618,33 @@ toml = [
 ]
 
 [[package]]
+name = "ctranslate2"
+version = "4.6.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "pyyaml" },
+    { name = "setuptools" },
+]
+wheels = [
+    { url = "https://pypi.netflix.net/packages/18592776433/ctranslate2-4.6.0-cp311-cp311-macosx_10_13_x86_64.whl", hash = "sha256:2f80538ce0f619540499b505747179ee5e86a5c9b80361c1582f7c725d660509", size = 13301999 },
+    { url = "https://pypi.netflix.net/packages/18592776434/ctranslate2-4.6.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:00097c52bf6be97f753e39bc7399f23bdf9803df942094b8cecdd8432f0335d5", size = 1291210 },
+    { url = "https://pypi.netflix.net/packages/18592776435/ctranslate2-4.6.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:9f4691a66cb7b9ffb04ebff4291055c20223449a6534c4a52b7432b0853946d0", size = 17419689 },
+    { url = "https://pypi.netflix.net/packages/18592776436/ctranslate2-4.6.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:79e4f2e8ea7f24797c80e0f4593d30447ef8da9036ebb4402b7f6c54687b7a46", size = 38639065 },
+    { url = "https://pypi.netflix.net/packages/18592776437/ctranslate2-4.6.0-cp311-cp311-win_amd64.whl", hash = "sha256:865649cebae240fe8c5b3e868354ea6c611d2ec17f335848caf890fca6c62d71", size = 19466832 },
+    { url = "https://pypi.netflix.net/packages/18592776438/ctranslate2-4.6.0-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:ff3ad05010857d450ee40fd9c28a33c10215a7180e189151e378ed2d19be8a57", size = 13310925 },
+    { url = "https://pypi.netflix.net/packages/18592776439/ctranslate2-4.6.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:78a844c633b6d450b20adac296f7f60ac2a67f2c76e510a83c8916835dc13f04", size = 1297913 },
+    { url = "https://pypi.netflix.net/packages/18592777686/ctranslate2-4.6.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:44bf4b973ea985b80696093e11e9c72909aee55b35abb749428333822c70ce68", size = 17485132 },
+    { url = "https://pypi.netflix.net/packages/18592777687/ctranslate2-4.6.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:06b2ca5c2905b540dd833a0b75d912ec9acc18d33a2dc4f85f12032851659a0d", size = 38816537 },
+    { url = "https://pypi.netflix.net/packages/18592777688/ctranslate2-4.6.0-cp312-cp312-win_amd64.whl", hash = "sha256:511cdf810a5bf6a2cec735799e5cd47966e63f8f7688fdee1b97fed621abda00", size = 19470040 },
+    { url = "https://pypi.netflix.net/packages/18592777689/ctranslate2-4.6.0-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:6283ffe63831b980282ff64ab845c62c7ef771f2ce06cb34825fd7578818bf07", size = 13310770 },
+    { url = "https://pypi.netflix.net/packages/18592777690/ctranslate2-4.6.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:2ebaae12ade184a235569235a875cf03d53b07732342f93b96ae76ef02c31961", size = 1297777 },
+    { url = "https://pypi.netflix.net/packages/18592777691/ctranslate2-4.6.0-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a719cd765ec10fe20f9a866093e777a000fd926a0bf235c7921f12c84befb443", size = 17487553 },
+    { url = "https://pypi.netflix.net/packages/18592778944/ctranslate2-4.6.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:039aa6cc3ed662931a60dec0be28abeaaceb3cc6f476060b8017a7a39a54a9f6", size = 38817828 },
+    { url = "https://pypi.netflix.net/packages/18592778945/ctranslate2-4.6.0-cp313-cp313-win_amd64.whl", hash = "sha256:af555c75cb9a9cc6c385f38680b92fa426761cf690e4479b1e962e2b17e02972", size = 19470232 },
+]
+
+[[package]]
 name = "cycler"
 version = "0.12.1"
 source = { registry = "https://pypi.netflix.net/simple" }
@@ -608,12 +681,37 @@ wheels = [
 ]
 
 [[package]]
+name = "faster-whisper"
+version = "1.2.1"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "av" },
+    { name = "ctranslate2" },
+    { name = "huggingface-hub" },
+    { name = "onnxruntime" },
+    { name = "tokenizers" },
+    { name = "tqdm" },
+]
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19272546202/faster_whisper-1.2.1-py3-none-any.whl", hash = "sha256:79a66ad50688c0b794dd501dc340a736992a6342f7f95e5811be60b5224a26a7", size = 1118909 },
+]
+
+[[package]]
 name = "filelock"
 version = "3.20.0"
 source = { registry = "https://pypi.netflix.net/simple" }
 sdist = { url = "https://pypi.netflix.net/packages/19180377033/filelock-3.20.0.tar.gz", hash = "sha256:711e943b4ec6be42e1d4e6690b48dc175c822967466bb31c0c293f34334c13f4", size = 18922 }
 wheels = [
     { url = "https://pypi.netflix.net/packages/19180377032/filelock-3.20.0-py3-none-any.whl", hash = "sha256:339b4732ffda5cd79b13f4e2711a31b0365ce445d95d243bb996273d072546a2", size = 16054 },
+]
+
+[[package]]
+name = "flatbuffers"
+version = "25.9.23"
+source = { registry = "https://pypi.netflix.net/simple" }
+sdist = { url = "https://pypi.netflix.net/packages/19123049909/flatbuffers-25.9.23.tar.gz", hash = "sha256:676f9fa62750bb50cf531b42a0a2a118ad8f7f797a511eda12881c016f093b12", size = 22067 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19123049908/flatbuffers-25.9.23-py2.py3-none-any.whl", hash = "sha256:255538574d6cb6d0a79a17ec8bc0d30985913b87513a01cce8bcdb6b4c44d0e2", size = 30869 },
 ]
 
 [[package]]
@@ -672,6 +770,105 @@ source = { registry = "https://pypi.netflix.net/simple" }
 sdist = { url = "https://pypi.netflix.net/packages/19267811096/fsspec-2025.10.0.tar.gz", hash = "sha256:b6789427626f068f9a83ca4e8a3cc050850b6c0f71f99ddb4f542b8266a26a59", size = 309285 }
 wheels = [
     { url = "https://pypi.netflix.net/packages/19267811095/fsspec-2025.10.0-py3-none-any.whl", hash = "sha256:7c7712353ae7d875407f97715f0e1ffcc21e33d5b24556cb1e090ae9409ec61d", size = 200966 },
+]
+
+[[package]]
+name = "h11"
+version = "0.16.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+sdist = { url = "https://pypi.netflix.net/packages/18633116060/h11-0.16.0.tar.gz", hash = "sha256:4e35b956cf45792e4caa5885e69fba00bdbc6ffafbfa020300e549b208ee5ff1", size = 101250 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/18633116059/h11-0.16.0-py3-none-any.whl", hash = "sha256:63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86", size = 37515 },
+]
+
+[[package]]
+name = "hf-xet"
+version = "1.2.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+sdist = { url = "https://pypi.netflix.net/packages/19242501973/hf_xet-1.2.0.tar.gz", hash = "sha256:a8c27070ca547293b6890c4bf389f713f80e8c478631432962bb7f4bc0bd7d7f", size = 506020 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19242499803/hf_xet-1.2.0-cp313-cp313t-macosx_10_12_x86_64.whl", hash = "sha256:ceeefcd1b7aed4956ae8499e2199607765fbd1c60510752003b6cc0b8413b649", size = 2861870 },
+    { url = "https://pypi.netflix.net/packages/19242499804/hf_xet-1.2.0-cp313-cp313t-macosx_11_0_arm64.whl", hash = "sha256:b70218dd548e9840224df5638fdc94bd033552963cfa97f9170829381179c813", size = 2717584 },
+    { url = "https://pypi.netflix.net/packages/19242499805/hf_xet-1.2.0-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7d40b18769bb9a8bc82a9ede575ce1a44c75eb80e7375a01d76259089529b5dc", size = 3315004 },
+    { url = "https://pypi.netflix.net/packages/19242499806/hf_xet-1.2.0-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:cd3a6027d59cfb60177c12d6424e31f4b5ff13d8e3a1247b3a584bf8977e6df5", size = 3222636 },
+    { url = "https://pypi.netflix.net/packages/19242499807/hf_xet-1.2.0-cp313-cp313t-musllinux_1_2_aarch64.whl", hash = "sha256:6de1fc44f58f6dd937956c8d304d8c2dea264c80680bcfa61ca4a15e7b76780f", size = 3408448 },
+    { url = "https://pypi.netflix.net/packages/19242501958/hf_xet-1.2.0-cp313-cp313t-musllinux_1_2_x86_64.whl", hash = "sha256:f182f264ed2acd566c514e45da9f2119110e48a87a327ca271027904c70c5832", size = 3503401 },
+    { url = "https://pypi.netflix.net/packages/19242501959/hf_xet-1.2.0-cp313-cp313t-win_amd64.whl", hash = "sha256:293a7a3787e5c95d7be1857358a9130694a9c6021de3f27fa233f37267174382", size = 2900866 },
+    { url = "https://pypi.netflix.net/packages/19242499808/hf_xet-1.2.0-cp314-cp314t-macosx_10_12_x86_64.whl", hash = "sha256:10bfab528b968c70e062607f663e21e34e2bba349e8038db546646875495179e", size = 2861861 },
+    { url = "https://pypi.netflix.net/packages/19242499809/hf_xet-1.2.0-cp314-cp314t-macosx_11_0_arm64.whl", hash = "sha256:2a212e842647b02eb6a911187dc878e79c4aa0aa397e88dd3b26761676e8c1f8", size = 2717699 },
+    { url = "https://pypi.netflix.net/packages/19242499810/hf_xet-1.2.0-cp314-cp314t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:30e06daccb3a7d4c065f34fc26c14c74f4653069bb2b194e7f18f17cbe9939c0", size = 3314885 },
+    { url = "https://pypi.netflix.net/packages/19242499811/hf_xet-1.2.0-cp314-cp314t-manylinux_2_28_aarch64.whl", hash = "sha256:29c8fc913a529ec0a91867ce3d119ac1aac966e098cf49501800c870328cc090", size = 3221550 },
+    { url = "https://pypi.netflix.net/packages/19242501964/hf_xet-1.2.0-cp314-cp314t-musllinux_1_2_aarch64.whl", hash = "sha256:66e159cbfcfbb29f920db2c09ed8b660eb894640d284f102ada929b6e3dc410a", size = 3408010 },
+    { url = "https://pypi.netflix.net/packages/19242501965/hf_xet-1.2.0-cp314-cp314t-musllinux_1_2_x86_64.whl", hash = "sha256:9c91d5ae931510107f148874e9e2de8a16052b6f1b3ca3c1b12f15ccb491390f", size = 3503264 },
+    { url = "https://pypi.netflix.net/packages/19242506317/hf_xet-1.2.0-cp314-cp314t-win_amd64.whl", hash = "sha256:210d577732b519ac6ede149d2f2f34049d44e8622bf14eb3d63bbcd2d4b332dc", size = 2901071 },
+    { url = "https://pypi.netflix.net/packages/19242499812/hf_xet-1.2.0-cp37-abi3-macosx_10_12_x86_64.whl", hash = "sha256:46740d4ac024a7ca9b22bebf77460ff43332868b661186a8e46c227fdae01848", size = 2866099 },
+    { url = "https://pypi.netflix.net/packages/19242499813/hf_xet-1.2.0-cp37-abi3-macosx_11_0_arm64.whl", hash = "sha256:27df617a076420d8845bea087f59303da8be17ed7ec0cd7ee3b9b9f579dff0e4", size = 2722178 },
+    { url = "https://pypi.netflix.net/packages/19242499814/hf_xet-1.2.0-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3651fd5bfe0281951b988c0facbe726aa5e347b103a675f49a3fa8144c7968fd", size = 3320214 },
+    { url = "https://pypi.netflix.net/packages/19242499815/hf_xet-1.2.0-cp37-abi3-manylinux_2_28_aarch64.whl", hash = "sha256:d06fa97c8562fb3ee7a378dd9b51e343bc5bc8190254202c9771029152f5e08c", size = 3229054 },
+    { url = "https://pypi.netflix.net/packages/19242501970/hf_xet-1.2.0-cp37-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:4c1428c9ae73ec0939410ec73023c4f842927f39db09b063b9482dac5a3bb737", size = 3413812 },
+    { url = "https://pypi.netflix.net/packages/19242501971/hf_xet-1.2.0-cp37-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:a55558084c16b09b5ed32ab9ed38421e2d87cf3f1f89815764d1177081b99865", size = 3508920 },
+    { url = "https://pypi.netflix.net/packages/19242501972/hf_xet-1.2.0-cp37-abi3-win_amd64.whl", hash = "sha256:e6584a52253f72c9f52f9e549d5895ca7a471608495c4ecaa6cc73dba2b24d69", size = 2905735 },
+]
+
+[[package]]
+name = "httpcore"
+version = "1.0.9"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "h11" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/18635511306/httpcore-1.0.9.tar.gz", hash = "sha256:6e34463af53fd2ab5d807f399a9b45ea31c3dfa2276f15a2c3f00afff6e176e8", size = 85484 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/18635511305/httpcore-1.0.9-py3-none-any.whl", hash = "sha256:2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55", size = 78784 },
+]
+
+[[package]]
+name = "httpx"
+version = "0.28.1"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "certifi" },
+    { name = "httpcore" },
+    { name = "idna" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/17718101182/httpx-0.28.1.tar.gz", hash = "sha256:75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc", size = 141406 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/17718101181/httpx-0.28.1-py3-none-any.whl", hash = "sha256:d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad", size = 73517 },
+]
+
+[[package]]
+name = "huggingface-hub"
+version = "1.0.1"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "filelock" },
+    { name = "fsspec" },
+    { name = "hf-xet", marker = "platform_machine == 'AMD64' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'arm64' or platform_machine == 'x86_64'" },
+    { name = "httpx" },
+    { name = "packaging" },
+    { name = "pyyaml" },
+    { name = "shellingham" },
+    { name = "tqdm" },
+    { name = "typer-slim" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/19257154962/huggingface_hub-1.0.1.tar.gz", hash = "sha256:87b506d5b45f0d1af58df7cf8bab993ded25d6077c2e959af58444df8b9589f3", size = 419291 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19257154961/huggingface_hub-1.0.1-py3-none-any.whl", hash = "sha256:7e255cd9b3432287a34a86933057abb1b341d20b97fb01c40cbd4e053764ae13", size = 503841 },
+]
+
+[[package]]
+name = "humanfriendly"
+version = "10.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "pyreadline3", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/928476852/humanfriendly-10.0.tar.gz", hash = "sha256:6b0b831ce8f15f7300721aa49829fc4e83921a9a301cc7f606be6686a2288ddc", size = 360702 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/928476851/humanfriendly-10.0-py2.py3-none-any.whl", hash = "sha256:1697e1a8a8f550fd43c2865cd84542fc175a61dcb779b6fee18cf6b6ccba1477", size = 86794 },
 ]
 
 [[package]]
@@ -770,6 +967,19 @@ dependencies = [
 sdist = { url = "https://pypi.netflix.net/packages/18507965198/jinja2-3.1.6.tar.gz", hash = "sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d", size = 245115 }
 wheels = [
     { url = "https://pypi.netflix.net/packages/18507965197/jinja2-3.1.6-py3-none-any.whl", hash = "sha256:85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67", size = 134899 },
+]
+
+[[package]]
+name = "jiwer"
+version = "4.0.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "rapidfuzz" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/18800408644/jiwer-4.0.0.tar.gz", hash = "sha256:ae9c051469102a61ef0927100baeeb4546f78d180c9b0948281d08eaf44c191e", size = 28074 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/18800408643/jiwer-4.0.0-py3-none-any.whl", hash = "sha256:7efaf0bd336b095d99ddef9dd67e1ee829d75d58aa2a81d9639870b01d6d95ea", size = 23034 },
 ]
 
 [[package]]
@@ -933,6 +1143,18 @@ wheels = [
 ]
 
 [[package]]
+name = "markdown-it-py"
+version = "4.0.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "mdurl" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/18958837502/markdown_it_py-4.0.0.tar.gz", hash = "sha256:cb0a2b4aa34f932c007117b194e945bd74e0ec24133ceb5bac59009cda1cb9f3", size = 73070 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/18958837501/markdown_it_py-4.0.0-py3-none-any.whl", hash = "sha256:87327c59b172c5011896038353a81343b6754500a08cd7a4973bb48c6d578147", size = 87321 },
+]
+
+[[package]]
 name = "markupsafe"
 version = "3.0.3"
 source = { registry = "https://pypi.netflix.net/simple" }
@@ -1068,6 +1290,15 @@ wheels = [
     { url = "https://pypi.netflix.net/packages/19181596323/matplotlib-3.10.7-pp311-pypy311_pp73-macosx_10_15_x86_64.whl", hash = "sha256:15112bcbaef211bd663fa935ec33313b948e214454d949b723998a43357b17b0", size = 8252283 },
     { url = "https://pypi.netflix.net/packages/19181596324/matplotlib-3.10.7-pp311-pypy311_pp73-macosx_11_0_arm64.whl", hash = "sha256:d2a959c640cdeecdd2ec3136e8ea0441da59bcaf58d67e9c590740addba2cb68", size = 8116733 },
     { url = "https://pypi.netflix.net/packages/19181596325/matplotlib-3.10.7-pp311-pypy311_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:3886e47f64611046bc1db523a09dd0a0a6bed6081e6f90e13806dd1d1d1b5e91", size = 8693919 },
+]
+
+[[package]]
+name = "mdurl"
+version = "0.1.2"
+source = { registry = "https://pypi.netflix.net/simple" }
+sdist = { url = "https://pypi.netflix.net/packages/69111226/mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba", size = 8729 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/69111225/mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8", size = 9979 },
 ]
 
 [[package]]
@@ -1504,6 +1735,38 @@ wheels = [
 ]
 
 [[package]]
+name = "onnxruntime"
+version = "1.23.2"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "coloredlogs" },
+    { name = "flatbuffers" },
+    { name = "numpy" },
+    { name = "packaging" },
+    { name = "protobuf" },
+    { name = "sympy" },
+]
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19230288340/onnxruntime-1.23.2-cp311-cp311-macosx_13_0_arm64.whl", hash = "sha256:6f91d2c9b0965e86827a5ba01531d5b669770b01775b23199565d6c1f136616c", size = 17196113 },
+    { url = "https://pypi.netflix.net/packages/19230284585/onnxruntime-1.23.2-cp311-cp311-macosx_13_0_x86_64.whl", hash = "sha256:87d8b6eaf0fbeb6835a60a4265fde7a3b60157cf1b2764773ac47237b4d48612", size = 19153857 },
+    { url = "https://pypi.netflix.net/packages/19230284586/onnxruntime-1.23.2-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:bbfd2fca76c855317568c1b36a885ddea2272c13cb0e395002c402f2360429a6", size = 15220095 },
+    { url = "https://pypi.netflix.net/packages/19230286591/onnxruntime-1.23.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:da44b99206e77734c5819aa2142c69e64f3b46edc3bd314f6a45a932defc0b3e", size = 17372080 },
+    { url = "https://pypi.netflix.net/packages/19230288344/onnxruntime-1.23.2-cp311-cp311-win_amd64.whl", hash = "sha256:902c756d8b633ce0dedd889b7c08459433fbcf35e9c38d1c03ddc020f0648c6e", size = 13468349 },
+    { url = "https://pypi.netflix.net/packages/19230288345/onnxruntime-1.23.2-cp312-cp312-macosx_13_0_arm64.whl", hash = "sha256:b8f029a6b98d3cf5be564d52802bb50a8489ab73409fa9db0bf583eabb7c2321", size = 17195929 },
+    { url = "https://pypi.netflix.net/packages/19230284587/onnxruntime-1.23.2-cp312-cp312-macosx_13_0_x86_64.whl", hash = "sha256:218295a8acae83905f6f1aed8cacb8e3eb3bd7513a13fe4ba3b2664a19fc4a6b", size = 19157705 },
+    { url = "https://pypi.netflix.net/packages/19230284588/onnxruntime-1.23.2-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:76ff670550dc23e58ea9bc53b5149b99a44e63b34b524f7b8547469aaa0dcb8c", size = 15226915 },
+    { url = "https://pypi.netflix.net/packages/19230286594/onnxruntime-1.23.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:0f9b4ae77f8e3c9bee50c27bc1beede83f786fe1d52e99ac85aa8d65a01e9b77", size = 17382649 },
+    { url = "https://pypi.netflix.net/packages/19230288349/onnxruntime-1.23.2-cp312-cp312-win_amd64.whl", hash = "sha256:25de5214923ce941a3523739d34a520aac30f21e631de53bba9174dc9c004435", size = 13470528 },
+    { url = "https://pypi.netflix.net/packages/19230284589/onnxruntime-1.23.2-cp313-cp313-macosx_13_0_arm64.whl", hash = "sha256:2ff531ad8496281b4297f32b83b01cdd719617e2351ffe0dba5684fb283afa1f", size = 17196337 },
+    { url = "https://pypi.netflix.net/packages/19230285628/onnxruntime-1.23.2-cp313-cp313-macosx_13_0_x86_64.whl", hash = "sha256:162f4ca894ec3de1a6fd53589e511e06ecdc3ff646849b62a9da7489dee9ce95", size = 19157691 },
+    { url = "https://pypi.netflix.net/packages/19230284590/onnxruntime-1.23.2-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:45d127d6e1e9b99d1ebeae9bcd8f98617a812f53f46699eafeb976275744826b", size = 15226898 },
+    { url = "https://pypi.netflix.net/packages/19230286598/onnxruntime-1.23.2-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:8bace4e0d46480fbeeb7bbe1ffe1f080e6663a42d1086ff95c1551f2d39e7872", size = 17382518 },
+    { url = "https://pypi.netflix.net/packages/19230288354/onnxruntime-1.23.2-cp313-cp313-win_amd64.whl", hash = "sha256:1f9cc0a55349c584f083c1c076e611a7c35d5b867d5d6e6d6c823bf821978088", size = 13470276 },
+    { url = "https://pypi.netflix.net/packages/19230284591/onnxruntime-1.23.2-cp313-cp313t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:9d2385e774f46ac38f02b3a91a91e30263d41b2f1f4f26ae34805b2a9ddef466", size = 15229610 },
+    { url = "https://pypi.netflix.net/packages/19230286600/onnxruntime-1.23.2-cp313-cp313t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:e2b9233c4947907fd1818d0e581c049c41ccc39b2856cc942ff6d26317cee145", size = 17394184 },
+]
+
+[[package]]
 name = "opt-einsum"
 version = "3.4.0"
 source = { registry = "https://pypi.netflix.net/simple" }
@@ -1720,6 +1983,21 @@ wheels = [
 ]
 
 [[package]]
+name = "protobuf"
+version = "6.33.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+sdist = { url = "https://pypi.netflix.net/packages/19205783076/protobuf-6.33.0.tar.gz", hash = "sha256:140303d5c8d2037730c548f8c7b93b20bb1dc301be280c378b82b8894589c954", size = 443463 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19205783067/protobuf-6.33.0-cp310-abi3-win32.whl", hash = "sha256:d6101ded078042a8f17959eccd9236fb7a9ca20d3b0098bbcb91533a5680d035", size = 425593 },
+    { url = "https://pypi.netflix.net/packages/19205783068/protobuf-6.33.0-cp310-abi3-win_amd64.whl", hash = "sha256:9a031d10f703f03768f2743a1c403af050b6ae1f3480e9c140f39c45f81b13ee", size = 436882 },
+    { url = "https://pypi.netflix.net/packages/19205783069/protobuf-6.33.0-cp39-abi3-macosx_10_9_universal2.whl", hash = "sha256:905b07a65f1a4b72412314082c7dbfae91a9e8b68a0cc1577515f8df58ecf455", size = 427521 },
+    { url = "https://pypi.netflix.net/packages/19205783070/protobuf-6.33.0-cp39-abi3-manylinux2014_aarch64.whl", hash = "sha256:e0697ece353e6239b90ee43a9231318302ad8353c70e6e45499fa52396debf90", size = 324445 },
+    { url = "https://pypi.netflix.net/packages/19205783071/protobuf-6.33.0-cp39-abi3-manylinux2014_s390x.whl", hash = "sha256:e0a1715e4f27355afd9570f3ea369735afc853a6c3951a6afe1f80d8569ad298", size = 339159 },
+    { url = "https://pypi.netflix.net/packages/19205783072/protobuf-6.33.0-cp39-abi3-manylinux2014_x86_64.whl", hash = "sha256:35be49fd3f4fefa4e6e2aacc35e8b837d6703c37a2168a55ac21e9b1bc7559ef", size = 323172 },
+    { url = "https://pypi.netflix.net/packages/19205783075/protobuf-6.33.0-py3-none-any.whl", hash = "sha256:25c9e1963c6734448ea2d308cfa610e692b801304ba0908d7bfa564ac5132995", size = 170477 },
+]
+
+[[package]]
 name = "psutil"
 version = "7.1.2"
 source = { registry = "https://pypi.netflix.net/simple" }
@@ -1779,6 +2057,15 @@ source = { registry = "https://pypi.netflix.net/simple" }
 sdist = { url = "https://pypi.netflix.net/packages/19110362654/pyparsing-3.2.5.tar.gz", hash = "sha256:2df8d5b7b2802ef88e8d016a2eb9c7aeaa923529cd251ed0fe4608275d4105b6", size = 1099274 }
 wheels = [
     { url = "https://pypi.netflix.net/packages/19110362653/pyparsing-3.2.5-py3-none-any.whl", hash = "sha256:e38a4f02064cf41fe6593d328d0512495ad1f3d8a91c4f73fc401b3079a59a5e", size = 113890 },
+]
+
+[[package]]
+name = "pyreadline3"
+version = "3.5.4"
+source = { registry = "https://pypi.netflix.net/simple" }
+sdist = { url = "https://pypi.netflix.net/packages/16667105878/pyreadline3-3.5.4.tar.gz", hash = "sha256:8d57d53039a1c75adba8e50dd3d992b28143480816187ea5efbd5c78e6c885b7", size = 99839 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/16667105877/pyreadline3-3.5.4-py3-none-any.whl", hash = "sha256:eaf8e6cc3c49bcccf145fc6067ba8643d1df34d604a1ec0eccbf7a18e6d3fae6", size = 83178 },
 ]
 
 [[package]]
@@ -1935,6 +2222,87 @@ wheels = [
 ]
 
 [[package]]
+name = "rapidfuzz"
+version = "3.14.2"
+source = { registry = "https://pypi.netflix.net/simple" }
+sdist = { url = "https://pypi.netflix.net/packages/19270678064/rapidfuzz-3.14.2.tar.gz", hash = "sha256:69bf91e66aeb84a104aea35e1b3f6b3aa606faaee6db1cfc76950f2a6a828a12", size = 57863880 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19270561529/rapidfuzz-3.14.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:3969670d4b85e589564d6a75638ec2372a4375b7e68e747f3bd37b507cf843e4", size = 1953885 },
+    { url = "https://pypi.netflix.net/packages/19270561530/rapidfuzz-3.14.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:061884b23a8c5eea9443e52acf02cbd533aff93a5439b0e90b5586a0638b8720", size = 1390202 },
+    { url = "https://pypi.netflix.net/packages/19270571480/rapidfuzz-3.14.2-cp311-cp311-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:6fc2bc48a219c171deb8529bfcc90ca6663fbcaa42b54ef202858976078f858a", size = 1389319 },
+    { url = "https://pypi.netflix.net/packages/19270571481/rapidfuzz-3.14.2-cp311-cp311-manylinux_2_26_ppc64le.manylinux_2_28_ppc64le.whl", hash = "sha256:cfa62729ac2d77a50a240b6331e9fffb5e070625e97e8f7e50fa882b3ea396ad", size = 1697523 },
+    { url = "https://pypi.netflix.net/packages/19270571482/rapidfuzz-3.14.2-cp311-cp311-manylinux_2_26_s390x.manylinux_2_28_s390x.whl", hash = "sha256:2d001aaf47a500083b189140df16eaefd675bf06c818a71ae9f687b0d6f804f8", size = 2232679 },
+    { url = "https://pypi.netflix.net/packages/19270571483/rapidfuzz-3.14.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:c95eeaa7f2a990757826aa34e7375b50d49172da5ca7536dc461b1d197e0de9b", size = 3178497 },
+    { url = "https://pypi.netflix.net/packages/19270571484/rapidfuzz-3.14.2-cp311-cp311-manylinux_2_31_armv7l.whl", hash = "sha256:30af5e015462f89408d7b3bbdd614c739adc386e3d47bd565b53ffb670266021", size = 1228443 },
+    { url = "https://pypi.netflix.net/packages/19270571485/rapidfuzz-3.14.2-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:35f12b07d58b932ef95b5f66b40c9efc60c5201bccd3c5ddde4a87df19d0aba8", size = 2411998 },
+    { url = "https://pypi.netflix.net/packages/19270571486/rapidfuzz-3.14.2-cp311-cp311-musllinux_1_2_armv7l.whl", hash = "sha256:0aa67110e016d2cdce3e5a3330d09fb1dba3cf83350f6eb46a6b9276cbafd094", size = 2530118 },
+    { url = "https://pypi.netflix.net/packages/19270571487/rapidfuzz-3.14.2-cp311-cp311-musllinux_1_2_ppc64le.whl", hash = "sha256:b13dc4743a5d222600d98fb4a0345e910829ef4f286e81b34349627355884c87", size = 2812638 },
+    { url = "https://pypi.netflix.net/packages/19270571488/rapidfuzz-3.14.2-cp311-cp311-musllinux_1_2_s390x.whl", hash = "sha256:b16c40709f22c8fc16ca49a5484a468fe0a95f08f29c68043f46f8771e2c37e2", size = 3319785 },
+    { url = "https://pypi.netflix.net/packages/19270583447/rapidfuzz-3.14.2-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:ac2bd7c74523f952a66536f72b3f68260427e2a6954f1f03d758f01bbbf60564", size = 4283130 },
+    { url = "https://pypi.netflix.net/packages/19270583448/rapidfuzz-3.14.2-cp311-cp311-win32.whl", hash = "sha256:37d7045dc0ab4cab49d7cca66b651b44939e18e098a2f55466082e173b1aa452", size = 1724212 },
+    { url = "https://pypi.netflix.net/packages/19270583449/rapidfuzz-3.14.2-cp311-cp311-win_amd64.whl", hash = "sha256:9a55ff35536662028563f22e0eadab47c7e94c8798239fe25d3ceca5ab156fd8", size = 1544237 },
+    { url = "https://pypi.netflix.net/packages/19270583450/rapidfuzz-3.14.2-cp311-cp311-win_arm64.whl", hash = "sha256:b2f0e1310f7cb1c0c0033987d0a0e85b4fd51a1c4882f556f082687d519f045d", size = 814744 },
+    { url = "https://pypi.netflix.net/packages/19270583451/rapidfuzz-3.14.2-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:0418f6ac1da7adf7e6e469876508f63168e80d3265a9e7ab9a2e999020577bfa", size = 1945306 },
+    { url = "https://pypi.netflix.net/packages/19270583452/rapidfuzz-3.14.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:f6028090b49015fc9ff0df3c06751078fe300a291e933a378a7c37b78c4d6a3e", size = 1390788 },
+    { url = "https://pypi.netflix.net/packages/19270583453/rapidfuzz-3.14.2-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:21aa299985d1bbdb3ccf8a8214e7daee72bb7e8c8fb25a520f015dc200a57816", size = 1374581 },
+    { url = "https://pypi.netflix.net/packages/19270583454/rapidfuzz-3.14.2-cp312-cp312-manylinux_2_26_ppc64le.manylinux_2_28_ppc64le.whl", hash = "sha256:e247612909876f36e6132265deef34efcaaf490e1857022204b206ff76578076", size = 1668425 },
+    { url = "https://pypi.netflix.net/packages/19270583455/rapidfuzz-3.14.2-cp312-cp312-manylinux_2_26_s390x.manylinux_2_28_s390x.whl", hash = "sha256:9cf077475cd4118a5b846a72749d54b520243be6baddba1dd1446f3b1dbab29c", size = 2213857 },
+    { url = "https://pypi.netflix.net/packages/19270583456/rapidfuzz-3.14.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:a5e7e02fb51f9a78e32f4fb8b5546d543e1fb637409cb682a6b8cb12e0c3015c", size = 3154948 },
+    { url = "https://pypi.netflix.net/packages/19270583457/rapidfuzz-3.14.2-cp312-cp312-manylinux_2_31_armv7l.whl", hash = "sha256:b1febabf4a4a664a2b6025830d93d7703f1cd9dcbe656ed7159053091b4d9389", size = 1223872 },
+    { url = "https://pypi.netflix.net/packages/19270583458/rapidfuzz-3.14.2-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:766d133f11888c48497f26a1722afc697a5fbad05bbfec3a41a4bc04fd21af9d", size = 2392511 },
+    { url = "https://pypi.netflix.net/packages/19270583459/rapidfuzz-3.14.2-cp312-cp312-musllinux_1_2_armv7l.whl", hash = "sha256:2a851a7c6660b6e47723378ca7692cd42700660a8783e4e7d07254a984d63ec8", size = 2521397 },
+    { url = "https://pypi.netflix.net/packages/19270601395/rapidfuzz-3.14.2-cp312-cp312-musllinux_1_2_ppc64le.whl", hash = "sha256:686594bd7f7132cb85900a4cc910e9acb9d39466412b8a275f3d4bc37faba23c", size = 2783107 },
+    { url = "https://pypi.netflix.net/packages/19270601396/rapidfuzz-3.14.2-cp312-cp312-musllinux_1_2_s390x.whl", hash = "sha256:e1d412122de3c5c492acfcde020f543b9b529e2eb115f875e2fd7470e44ab441", size = 3302454 },
+    { url = "https://pypi.netflix.net/packages/19270601397/rapidfuzz-3.14.2-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:2611b1f6464dddf900bffeee2aa29a9aa1039317cbb226e18d3a5f029d4cf303", size = 4259416 },
+    { url = "https://pypi.netflix.net/packages/19270601398/rapidfuzz-3.14.2-cp312-cp312-win32.whl", hash = "sha256:e6968b6db188fbb4c7a18aac25e075940a8204434a2a0d6bddb0a695d7f0c898", size = 1709511 },
+    { url = "https://pypi.netflix.net/packages/19270601399/rapidfuzz-3.14.2-cp312-cp312-win_amd64.whl", hash = "sha256:1a6d43683c04ffb4270bb1498951a39e9c200eb326f933fd5d608c19485049b8", size = 1538979 },
+    { url = "https://pypi.netflix.net/packages/19270601400/rapidfuzz-3.14.2-cp312-cp312-win_arm64.whl", hash = "sha256:4ecd3ab9aebb17becb462eac19151bd143abc614e3d2a0351a72171371ac3f4b", size = 811161 },
+    { url = "https://pypi.netflix.net/packages/19270601401/rapidfuzz-3.14.2-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:f1f5a2566af7409d11f11b0b4e9f76a0ac64577737b821c64a2a6afc971c1c25", size = 1939647 },
+    { url = "https://pypi.netflix.net/packages/19270601402/rapidfuzz-3.14.2-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:810863f3a98d09392e5fb481aef9d82597df6ee06f7f11ceafe6077585c4e018", size = 1385512 },
+    { url = "https://pypi.netflix.net/packages/19270611382/rapidfuzz-3.14.2-cp313-cp313-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:2e8c0d16c0724dab7c7dc4099c1ec410679b2d11c1650b069d15d4ab4370f1cc", size = 1373571 },
+    { url = "https://pypi.netflix.net/packages/19270611383/rapidfuzz-3.14.2-cp313-cp313-manylinux_2_26_ppc64le.manylinux_2_28_ppc64le.whl", hash = "sha256:004f04356d84660feffbf8c26975cb0db0e010b2225d6e21b3d84dd8df764652", size = 1667135 },
+    { url = "https://pypi.netflix.net/packages/19270611384/rapidfuzz-3.14.2-cp313-cp313-manylinux_2_26_s390x.manylinux_2_28_s390x.whl", hash = "sha256:b3c2aea6b1db03a8abd62bb157161d7a65b896c9f85d5efc2f1bb444a107c47a", size = 2209440 },
+    { url = "https://pypi.netflix.net/packages/19270611385/rapidfuzz-3.14.2-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:8bef63704b7851ad1adf5d7ceb7f1b3136b78ee0b34240c14ab85ea775f6caa7", size = 3156760 },
+    { url = "https://pypi.netflix.net/packages/19270611386/rapidfuzz-3.14.2-cp313-cp313-manylinux_2_31_armv7l.whl", hash = "sha256:52e8e37566313ac60bfa80754c4c0367eec65b3ef52bb8cc409b88e878b03182", size = 1222067 },
+    { url = "https://pypi.netflix.net/packages/19270611387/rapidfuzz-3.14.2-cp313-cp313-musllinux_1_2_aarch64.whl", hash = "sha256:b3fad0fb5ac44944ad8f81e729ec45f65a85efb7d7ea4cf67343799c0ea9874b", size = 2394776 },
+    { url = "https://pypi.netflix.net/packages/19270611388/rapidfuzz-3.14.2-cp313-cp313-musllinux_1_2_armv7l.whl", hash = "sha256:d027842a956b86aa9706b836c48186da405413d03957afaccda2fbe414bc3912", size = 2526123 },
+    { url = "https://pypi.netflix.net/packages/19270611389/rapidfuzz-3.14.2-cp313-cp313-musllinux_1_2_ppc64le.whl", hash = "sha256:27dcb45427b1966fb43c904d19c841c3e6da147931959cf05388ecef9c5a1e8d", size = 2781535 },
+    { url = "https://pypi.netflix.net/packages/19270611390/rapidfuzz-3.14.2-cp313-cp313-musllinux_1_2_s390x.whl", hash = "sha256:1aab0676884e91282817b5710933efc4ea9466d2ba5703b5a7541468695d807a", size = 3297233 },
+    { url = "https://pypi.netflix.net/packages/19270611391/rapidfuzz-3.14.2-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:ef36c21ecb7f4bad7e4e119fe746a787ad684eaf1c383c17a2aff5d75b20fa58", size = 4262874 },
+    { url = "https://pypi.netflix.net/packages/19270611392/rapidfuzz-3.14.2-cp313-cp313-win32.whl", hash = "sha256:ed3af4fa0dbd6d1964f171ac6fff82ed9e76c737eb34ae3daf926c4aefc2ce9b", size = 1707960 },
+    { url = "https://pypi.netflix.net/packages/19270611393/rapidfuzz-3.14.2-cp313-cp313-win_amd64.whl", hash = "sha256:3fc2e7c3ab006299366b1c8256e452f00eb1659d0e4790b140633627c7d947b7", size = 1537022 },
+    { url = "https://pypi.netflix.net/packages/19270611394/rapidfuzz-3.14.2-cp313-cp313-win_arm64.whl", hash = "sha256:def48d5010ddcd2a80b44f14bf0172c29bfc27906d13c0ea69a6e3c00e6f225c", size = 810754 },
+    { url = "https://pypi.netflix.net/packages/19270611395/rapidfuzz-3.14.2-cp313-cp313t-macosx_10_13_x86_64.whl", hash = "sha256:a39952b8e033758ee15b2de48a5b0689c83ea6bd93c8df3635f2fbf21e52fd25", size = 1967701 },
+    { url = "https://pypi.netflix.net/packages/19270611396/rapidfuzz-3.14.2-cp313-cp313t-macosx_11_0_arm64.whl", hash = "sha256:f786811555869b5961b3718b007179e87d73c47414afee5fb882ae1b9b174c0c", size = 1410705 },
+    { url = "https://pypi.netflix.net/packages/19270633515/rapidfuzz-3.14.2-cp313-cp313t-win32.whl", hash = "sha256:6c0a25490a99c4b73f1deca3efae004df5f2b254760d98cac8d93becf41260d4", size = 1757765 },
+    { url = "https://pypi.netflix.net/packages/19270633516/rapidfuzz-3.14.2-cp313-cp313t-win_amd64.whl", hash = "sha256:e5af2dab8ec5a180d9ff24fbb5b25e589848b93cccb755eceb0bf0e3cfed7e5c", size = 1576800 },
+    { url = "https://pypi.netflix.net/packages/19270633517/rapidfuzz-3.14.2-cp313-cp313t-win_arm64.whl", hash = "sha256:8cf2aefb0d246d540ea83b4648db690bd7e25d34a7c23c5f250dcba2e4989192", size = 829942 },
+    { url = "https://pypi.netflix.net/packages/19270633518/rapidfuzz-3.14.2-cp314-cp314-macosx_10_15_x86_64.whl", hash = "sha256:ace3a6b108679888833cdceea9a6231e406db202b8336eaf68279fe71a1d2ac4", size = 1942087 },
+    { url = "https://pypi.netflix.net/packages/19270633519/rapidfuzz-3.14.2-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:32c7cc978447202ba592e197228767b230d85e52e5ef229e2b22e51c8e3d06ad", size = 1386990 },
+    { url = "https://pypi.netflix.net/packages/19270633520/rapidfuzz-3.14.2-cp314-cp314-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:5a479a824cbf6a646bcec1c34fbbfb85393d03eb2811657e3a6536298d435f76", size = 1379126 },
+    { url = "https://pypi.netflix.net/packages/19270644617/rapidfuzz-3.14.2-cp314-cp314-manylinux_2_26_ppc64le.manylinux_2_28_ppc64le.whl", hash = "sha256:3a3bc0c8b65dcd1e55a1cc42a7c7b34e93ad5d4bd1501dc998f4625042e1b110", size = 1673471 },
+    { url = "https://pypi.netflix.net/packages/19270644618/rapidfuzz-3.14.2-cp314-cp314-manylinux_2_26_s390x.manylinux_2_28_s390x.whl", hash = "sha256:217b46bf096818df16c0e2c43202aa8352e67c4379b1d5f25e98c5d1c7f5414d", size = 2215858 },
+    { url = "https://pypi.netflix.net/packages/19270644619/rapidfuzz-3.14.2-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:07d3e8afeeb81044873644e505e56ba06d8bdcc291ef7e26ac0f54c58309267d", size = 3159305 },
+    { url = "https://pypi.netflix.net/packages/19270644620/rapidfuzz-3.14.2-cp314-cp314-manylinux_2_31_armv7l.whl", hash = "sha256:b7832c8707bfa4f9b081def64aa49954d4813cff7fc9ff4a0b184a4e8697147f", size = 1218207 },
+    { url = "https://pypi.netflix.net/packages/19270644621/rapidfuzz-3.14.2-cp314-cp314-musllinux_1_2_aarch64.whl", hash = "sha256:35581ba6981e016333063c52719c0b0b1bef0f944e641ad0f4ea34e0b39161f3", size = 2401246 },
+    { url = "https://pypi.netflix.net/packages/19270644622/rapidfuzz-3.14.2-cp314-cp314-musllinux_1_2_armv7l.whl", hash = "sha256:fbd5152169dc3f6c894c24fc04813f50bf9b929d137f2b965ac926e03329ceba", size = 2518311 },
+    { url = "https://pypi.netflix.net/packages/19270644623/rapidfuzz-3.14.2-cp314-cp314-musllinux_1_2_ppc64le.whl", hash = "sha256:98a119c3f9b152e9b62ec43520392669bd8deae9df269f30569f1c87bf6055a4", size = 2786775 },
+    { url = "https://pypi.netflix.net/packages/19270655253/rapidfuzz-3.14.2-cp314-cp314-musllinux_1_2_s390x.whl", hash = "sha256:9e84164e7a68f9c3523c5d104dda6601202b39bae0aac1b73a4f119d387275c4", size = 3304850 },
+    { url = "https://pypi.netflix.net/packages/19270655254/rapidfuzz-3.14.2-cp314-cp314-musllinux_1_2_x86_64.whl", hash = "sha256:64c67402b86a073666f92c2807811e3817a17fedfe505fe89a9f93eea264481c", size = 4265011 },
+    { url = "https://pypi.netflix.net/packages/19270655255/rapidfuzz-3.14.2-cp314-cp314-win32.whl", hash = "sha256:58d79f4df3e4332b31e671f9487f0c215856cf1f2d9ac3848ac10c27262fd723", size = 1742250 },
+    { url = "https://pypi.netflix.net/packages/19270655256/rapidfuzz-3.14.2-cp314-cp314-win_amd64.whl", hash = "sha256:dc6fe7a27ad9e233c155e89b7e1d9b6d13963e3261ea5b30f3e79c3556c49bc9", size = 1584830 },
+    { url = "https://pypi.netflix.net/packages/19270655257/rapidfuzz-3.14.2-cp314-cp314-win_arm64.whl", hash = "sha256:bb4e96d80de7e6364850a2e168e899b8e85ab80ce19827cc4fbe0aa3c57f8124", size = 833495 },
+    { url = "https://pypi.netflix.net/packages/19270655258/rapidfuzz-3.14.2-cp314-cp314t-macosx_10_15_x86_64.whl", hash = "sha256:c7d4d0927a6b1ef2529a8cc57adf2ce965f7aaef324a4d1ae826d0de43ab4f82", size = 1968658 },
+    { url = "https://pypi.netflix.net/packages/19270668025/rapidfuzz-3.14.2-cp314-cp314t-macosx_11_0_arm64.whl", hash = "sha256:c0fae06e7fb4be18e86eb51e77f0d441975a3ba9ef963f957d750a2a41536ba1", size = 1410745 },
+    { url = "https://pypi.netflix.net/packages/19270668026/rapidfuzz-3.14.2-cp314-cp314t-win32.whl", hash = "sha256:d1d3ef72665d460b7b3e61d3dff4341a195dcb3250b4471eef71db23fca2d91a", size = 1793485 },
+    { url = "https://pypi.netflix.net/packages/19270668027/rapidfuzz-3.14.2-cp314-cp314t-win_amd64.whl", hash = "sha256:3a0960c5c11a34e8129a3062f1b1cbb371fad364e2195ebe46a88a9d5eeec0f1", size = 1623499 },
+    { url = "https://pypi.netflix.net/packages/19270668028/rapidfuzz-3.14.2-cp314-cp314t-win_arm64.whl", hash = "sha256:ed29600e55d7df104d5778d499678c305e32e3ccfa873489a7c8304489c5f8f3", size = 851497 },
+    { url = "https://pypi.netflix.net/packages/19270668029/rapidfuzz-3.14.2-pp311-pypy311_pp73-macosx_10_15_x86_64.whl", hash = "sha256:172630396d8bdbb5ea1a58e82afc489c8e18076e1f2b2edea20cb30f8926325a", size = 1888501 },
+    { url = "https://pypi.netflix.net/packages/19270668030/rapidfuzz-3.14.2-pp311-pypy311_pp73-macosx_11_0_arm64.whl", hash = "sha256:6cff0d6749fac8dd7fdf26d0604d8a47c5ee786061972077d71ec7ac0fb7ced2", size = 1336744 },
+    { url = "https://pypi.netflix.net/packages/19270678063/rapidfuzz-3.14.2-pp311-pypy311_pp73-win_amd64.whl", hash = "sha256:f558bc2ee3a0bb5d7238ed10a0b76455f2d28c97e93564a1f7855cea4096ef1c", size = 1511340 },
+]
+
+[[package]]
 name = "requests"
 version = "2.32.5"
 source = { registry = "https://pypi.netflix.net/simple" }
@@ -1947,6 +2315,19 @@ dependencies = [
 sdist = { url = "https://pypi.netflix.net/packages/18983953497/requests-2.32.5.tar.gz", hash = "sha256:dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf", size = 134517 }
 wheels = [
     { url = "https://pypi.netflix.net/packages/18983953496/requests-2.32.5-py3-none-any.whl", hash = "sha256:2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6", size = 64738 },
+]
+
+[[package]]
+name = "rich"
+version = "14.2.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "markdown-it-py" },
+    { name = "pygments" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/19183156133/rich-14.2.0.tar.gz", hash = "sha256:73ff50c7c0c1c77c8243079283f4edb376f0f6442433aecb8ce7e6d0b92d1fe4", size = 219990 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19183156132/rich-14.2.0-py3-none-any.whl", hash = "sha256:76bc51fe2e57d2b1be1f96c524b890b816e334ab4c1e45888799bfaab0021edd", size = 243393 },
 ]
 
 [[package]]
@@ -2095,12 +2476,30 @@ wheels = [
 ]
 
 [[package]]
+name = "shellingham"
+version = "1.5.4"
+source = { registry = "https://pypi.netflix.net/simple" }
+sdist = { url = "https://pypi.netflix.net/packages/431600728/shellingham-1.5.4.tar.gz", hash = "sha256:8dbca0739d487e5bd35ab3ca4b36e11c4078f3a234bfce294b0a0291363404de", size = 10310 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/431600727/shellingham-1.5.4-py2.py3-none-any.whl", hash = "sha256:7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686", size = 9755 },
+]
+
+[[package]]
 name = "six"
 version = "1.17.0"
 source = { registry = "https://pypi.netflix.net/simple" }
 sdist = { url = "https://pypi.netflix.net/packages/17694775990/six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81", size = 34031 }
 wheels = [
     { url = "https://pypi.netflix.net/packages/17694775989/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050 },
+]
+
+[[package]]
+name = "sniffio"
+version = "1.3.1"
+source = { registry = "https://pypi.netflix.net/simple" }
+sdist = { url = "https://pypi.netflix.net/packages/9618641273/sniffio-1.3.1.tar.gz", hash = "sha256:f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc", size = 20372 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/9618641272/sniffio-1.3.1-py3-none-any.whl", hash = "sha256:2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2", size = 10235 },
 ]
 
 [[package]]
@@ -2201,6 +2600,31 @@ source = { registry = "https://pypi.netflix.net/simple" }
 sdist = { url = "https://pypi.netflix.net/packages/18525745157/threadpoolctl-3.6.0.tar.gz", hash = "sha256:8ab8b4aa3491d812b623328249fab5302a68d2d71745c8a4c719a2fcaba9f44e", size = 21274 }
 wheels = [
     { url = "https://pypi.netflix.net/packages/18525745156/threadpoolctl-3.6.0-py3-none-any.whl", hash = "sha256:43a0b8fd5a2928500110039e43a5eed8480b918967083ea48dc3ab9f13c4a7fb", size = 18638 },
+]
+
+[[package]]
+name = "tokenizers"
+version = "0.22.1"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "huggingface-hub" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/19104354956/tokenizers-0.22.1.tar.gz", hash = "sha256:61de6522785310a309b3407bac22d99c4db5dba349935e99e4d15ea2226af2d9", size = 363123 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19104352061/tokenizers-0.22.1-cp39-abi3-macosx_10_12_x86_64.whl", hash = "sha256:59fdb013df17455e5f950b4b834a7b3ee2e0271e6378ccb33aa74d178b513c73", size = 3069318 },
+    { url = "https://pypi.netflix.net/packages/19104352062/tokenizers-0.22.1-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:8d4e484f7b0827021ac5f9f71d4794aaef62b979ab7608593da22b1d2e3c4edc", size = 2926478 },
+    { url = "https://pypi.netflix.net/packages/19104352063/tokenizers-0.22.1-cp39-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:19d2962dd28bc67c1f205ab180578a78eef89ac60ca7ef7cbe9635a46a56422a", size = 3256994 },
+    { url = "https://pypi.netflix.net/packages/19104352064/tokenizers-0.22.1-cp39-abi3-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:38201f15cdb1f8a6843e6563e6e79f4abd053394992b9bbdf5213ea3469b4ae7", size = 3153141 },
+    { url = "https://pypi.netflix.net/packages/19104352065/tokenizers-0.22.1-cp39-abi3-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:d1cbe5454c9a15df1b3443c726063d930c16f047a3cc724b9e6e1a91140e5a21", size = 3508049 },
+    { url = "https://pypi.netflix.net/packages/19104352066/tokenizers-0.22.1-cp39-abi3-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:e7d094ae6312d69cc2a872b54b91b309f4f6fbce871ef28eb27b52a98e4d0214", size = 3710730 },
+    { url = "https://pypi.netflix.net/packages/19104352067/tokenizers-0.22.1-cp39-abi3-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:afd7594a56656ace95cdd6df4cca2e4059d294c5cfb1679c57824b605556cb2f", size = 3412560 },
+    { url = "https://pypi.netflix.net/packages/19104352068/tokenizers-0.22.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e2ef6063d7a84994129732b47e7915e8710f27f99f3a3260b8a38fc7ccd083f4", size = 3250221 },
+    { url = "https://pypi.netflix.net/packages/19104352069/tokenizers-0.22.1-cp39-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:ba0a64f450b9ef412c98f6bcd2a50c6df6e2443b560024a09fa6a03189726879", size = 9345569 },
+    { url = "https://pypi.netflix.net/packages/19104352070/tokenizers-0.22.1-cp39-abi3-musllinux_1_2_armv7l.whl", hash = "sha256:331d6d149fa9c7d632cde4490fb8bbb12337fa3a0232e77892be656464f4b446", size = 9271599 },
+    { url = "https://pypi.netflix.net/packages/19104352071/tokenizers-0.22.1-cp39-abi3-musllinux_1_2_i686.whl", hash = "sha256:607989f2ea68a46cb1dfbaf3e3aabdf3f21d8748312dbeb6263d1b3b66c5010a", size = 9533862 },
+    { url = "https://pypi.netflix.net/packages/19104352072/tokenizers-0.22.1-cp39-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:a0f307d490295717726598ef6fa4f24af9d484809223bbc253b201c740a06390", size = 9681250 },
+    { url = "https://pypi.netflix.net/packages/19104354954/tokenizers-0.22.1-cp39-abi3-win32.whl", hash = "sha256:b5120eed1442765cd90b903bb6cfef781fd8fe64e34ccaecbae4c619b7b12a82", size = 2472003 },
+    { url = "https://pypi.netflix.net/packages/19104354955/tokenizers-0.22.1-cp39-abi3-win_amd64.whl", hash = "sha256:65fd6e3fb11ca1e78a6a93602490f134d1fdeb13bcef99389d5102ea318ed138", size = 2674684 },
 ]
 
 [[package]]
@@ -2309,6 +2733,18 @@ wheels = [
 ]
 
 [[package]]
+name = "tqdm"
+version = "4.67.1"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/17567615557/tqdm-4.67.1.tar.gz", hash = "sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2", size = 169737 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/17567615556/tqdm-4.67.1-py3-none-any.whl", hash = "sha256:26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2", size = 78540 },
+]
+
+[[package]]
 name = "triton"
 version = "3.5.0"
 source = { registry = "https://pypi.netflix.net/simple" }
@@ -2325,6 +2761,34 @@ wheels = [
     { url = "https://pypi.netflix.net/packages/19197945337/triton-3.5.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:da0fa67ccd76c3dcfb0bffe1b1c57c685136a6bd33d141c24d9655d4185b1289", size = 170487949 },
     { url = "https://pypi.netflix.net/packages/19205571211/triton-3.5.0-cp314-cp314t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:c7ceef21410229ac23173a28eee5cfc0e37c1dfdb8b4bc11ecda2e3ecec7c686", size = 160075629 },
     { url = "https://pypi.netflix.net/packages/19197945441/triton-3.5.0-cp314-cp314t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:317fe477ea8fd4524a6a8c499fb0a36984a56d0b75bf9c9cb6133a1c56d5a6e7", size = 170580176 },
+]
+
+[[package]]
+name = "typer"
+version = "0.20.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "rich" },
+    { name = "shellingham" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/19222308318/typer-0.20.0.tar.gz", hash = "sha256:1aaf6494031793e4876fb0bacfa6a912b551cf43c1e63c800df8b1a866720c37", size = 106492 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19222308317/typer-0.20.0-py3-none-any.whl", hash = "sha256:5b463df6793ec1dca6213a3cf4c0f03bc6e322ac5e16e13ddd622a889489784a", size = 47028 },
+]
+
+[[package]]
+name = "typer-slim"
+version = "0.20.0"
+source = { registry = "https://pypi.netflix.net/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://pypi.netflix.net/packages/19222308084/typer_slim-0.20.0.tar.gz", hash = "sha256:9fc6607b3c6c20f5c33ea9590cbeb17848667c51feee27d9e314a579ab07d1a3", size = 106561 }
+wheels = [
+    { url = "https://pypi.netflix.net/packages/19222308083/typer_slim-0.20.0-py3-none-any.whl", hash = "sha256:f42a9b7571a12b97dddf364745d29f12221865acef7a2680065f9bb29c7dc89d", size = 47087 },
 ]
 
 [[package]]

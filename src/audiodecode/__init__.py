@@ -1,16 +1,27 @@
 """
-AudioDecode: Zero-copy, multi-backend audio decoding
+AudioDecode: Complete Audio Foundation Layer
 
-Three APIs available:
-1. load() - Drop-in replacement for librosa.load() [RECOMMENDED]
-2. AudioDecoder - Full-featured OOP API
-3. audiodecode.fast - Maximum performance, minimal overhead
+The fast, batteries-included foundation for audio ML training AND inference.
+
+Five APIs available:
+1. load() - Drop-in replacement for librosa.load()
+2. transcribe_file() - Fast speech-to-text transcription [NEW]
+3. AudioDataLoader - Auto-tuned PyTorch DataLoader for audio ML
+4. AudioDecoder - Full-featured OOP API
+5. audiodecode.fast - Maximum performance, minimal overhead
 
 Features:
-- Automatic backend selection (soundfile, PyAV, Rust)
-- LRU caching for repeated file access
+- 180x faster audio decode on Linux (vs librosa)
+- 4x faster speech-to-text (vs vanilla Whisper)
+- Auto-tuned PyTorch integration for training
+- Real-time streaming transcription support
 - Zero-copy numpy integration
-- 180x faster than librosa on Linux cold starts
+- LRU caching for repeated access
+
+Use Cases:
+- ML Training: Fast data loading + augmentation + GPU optimization
+- Speech-to-Text: Batch transcription + real-time streaming
+- Preprocessing: Fast format conversion + feature extraction
 """
 
 from pathlib import Path
@@ -21,6 +32,51 @@ from numpy.typing import DTypeLike, NDArray
 
 from audiodecode.core import AudioDecoder
 from audiodecode.cache import clear_cache, set_cache_size, get_cache
+
+# PyTorch integration (optional dependency)
+try:
+    from audiodecode.dataset import AudioDataset, AudioDatasetWithCache
+    from audiodecode.dataloader import AudioDataLoader, create_train_val_loaders
+    _TORCH_AVAILABLE = True
+except ImportError:
+    _TORCH_AVAILABLE = False
+    AudioDataset = None
+    AudioDatasetWithCache = None
+    AudioDataLoader = None
+    create_train_val_loaders = None
+
+# Inference integration (optional dependency)
+try:
+    from audiodecode.inference import (
+        WhisperInference,
+        TranscriptionResult,
+        TranscriptionSegment,
+        Word,
+        transcribe_file as _transcribe_file,
+        transcribe_audio as _transcribe_audio,
+        transcribe_batch as _transcribe_batch,
+    )
+    _INFERENCE_AVAILABLE = True
+
+    # Make transcribe functions available at top level
+    def transcribe_file(*args, **kwargs):
+        return _transcribe_file(*args, **kwargs)
+
+    def transcribe_audio(*args, **kwargs):
+        return _transcribe_audio(*args, **kwargs)
+
+    def transcribe_batch(*args, **kwargs):
+        return _transcribe_batch(*args, **kwargs)
+
+except ImportError:
+    _INFERENCE_AVAILABLE = False
+    WhisperInference = None
+    TranscriptionResult = None
+    TranscriptionSegment = None
+    Word = None
+    transcribe_file = None
+    transcribe_audio = None
+    transcribe_batch = None
 
 
 def load(
@@ -104,11 +160,25 @@ def load(
     return audio, actual_sr
 
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __all__ = [
-    "load",  # Recommended API
+    # Core: Fast audio loading
+    "load",
     "AudioDecoder",
     "clear_cache",
     "set_cache_size",
     "get_cache",
+    # Pillar 2: Training optimization (requires torch)
+    "AudioDataset",
+    "AudioDatasetWithCache",
+    "AudioDataLoader",
+    "create_train_val_loaders",
+    # Pillar 3: Speech-to-text inference (requires faster-whisper)
+    "transcribe_file",
+    "transcribe_audio",
+    "transcribe_batch",  # Batch processing for 3-8x speedup
+    "WhisperInference",
+    "TranscriptionResult",
+    "TranscriptionSegment",
+    "Word",  # Word-level timestamps
 ]
