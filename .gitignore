@@ -72,3 +72,7 @@ dist/
 build/
 real-world-test-data/
 real-world-test/
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
