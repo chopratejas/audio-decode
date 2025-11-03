@@ -1,0 +1,41 @@
+# Dockerfile for GPU benchmarking on NVIDIA GPUs
+# Compatible with RunPod, Lambda Labs, Google Colab, etc.
+
+FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    libsndfile1 \
+    build-essential \
+    git \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy project files
+COPY . .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -e ".[dev,inference]"
+
+# Install faster-whisper for GPU support
+RUN pip install --no-cache-dir faster-whisper
+
+# Install UX and benchmarking dependencies
+RUN pip install --no-cache-dir tqdm typer rich jiwer
+
+# Install YouTube and comparison tools
+RUN pip install --no-cache-dir yt-dlp openai-whisper
+
+# Verify CUDA installation
+RUN python -c "import torch; print(f'PyTorch version: {torch.__version__}'); print(f'CUDA available: {torch.cuda.is_available()}'); print(f'CUDA version: {torch.version.cuda if torch.cuda.is_available() else \"N/A\"}')"
+
+# Set environment variables for optimal GPU performance
+ENV CUDA_VISIBLE_DEVICES=0
+ENV OMP_NUM_THREADS=8
+
+# Default command
+CMD ["/bin/bash"]
