@@ -30,7 +30,7 @@ pip install audiodecode[inference,torch]  # Full installation
 from audiodecode import load
 audio, sr = load("podcast.mp3", sr=16000)
 
-# 2. Speech-to-Text (4x faster)
+# 2. Speech-to-Text (up to 6x faster)
 from audiodecode import transcribe_file
 result = transcribe_file("podcast.mp3")
 print(result.text)
@@ -119,10 +119,12 @@ for segment in result.segments:
     print(f"[{segment.start:.1f}s] {segment.text}")
 ```
 
-**Performance:**
-- 4x faster than vanilla Whisper (using faster-whisper + CTranslate2)
+**Performance (vs OpenAI Whisper):**
+- **CPU:** 1.8x faster (macOS), 6.0x faster (Linux)
+- **GPU:** 2.4x faster (A10G, validated)
+- **RTF:** 43.8x-108.3x realtime on GPU (A10G)
 - Combines fast audio loading (Pillar 1) + fast inference
-- VAD filtering for silence removal
+- Automatic GPU/CPU detection and optimization
 - Multiple model sizes (tiny → large-v3)
 
 ---
